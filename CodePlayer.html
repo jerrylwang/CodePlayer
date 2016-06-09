@@ -96,7 +96,7 @@
 	}
 
 	iframe{
-		height: 100px;
+		height: 100%;
 		position: relative;
 		left: 20px;
 		border:none;
@@ -139,25 +139,25 @@
 
 		<div class="codeContainer" id="HTMLContainer">
 			<div class="codeLabel">HTML</div>
-			<textarea>Example Code</textarea>
+			<textarea id="htmlCode"> <div id="test"></div> </textarea>
 
 		</div>
 
 		<div class="codeContainer" id="CSSContainer">
-			<div class="codeLabel">CSS</div>
-			<textarea>Example Code</textarea>
+			<div class="CSSLabel">CSS</div>
+			<textarea id="cssCode">html{background-color: blue}</textarea>
 
 		</div>
 
 		<div class="codeContainer" id="JSContainer">
-			<div class="codeLabel">JS</div>
-			<textarea>Example Code</textarea>
+			<div class="JSLabel">JS</div>
+			<textarea id="jsCode">document.getElementById("test").innerHTML="It's working!";</textarea>
 
 		</div>
 
 		<div class="codeContainer" id="ResultContainer">
 			<div class="codeLabel">Result</div>
-			<iframe></iframe>
+			<iframe id="resultFrame"></iframe>
 
 		</div>
 
@@ -195,7 +195,14 @@
 	});
 
 
+	$("#runButton").click(function(){
+		$("iframe").contents().find("html").html('<style>'+$
+('#cssCode').val()+'</style>'+$("#htmlCode").val());
 
+		document.getElementById("resultFrame").contentWindow.eval($("#jsCode").val());
+
+
+	});
 
 
 	</script>
